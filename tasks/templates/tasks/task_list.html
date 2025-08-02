@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8" />
+    <title>ניהול משימות</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px auto;
+            max-width: 700px;
+            direction: rtl;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+        th, td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+            text-align: right;
+        }
+        th {
+            background-color: #007acc;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f7ff;
+        }
+        input[type="text"] {
+            width: 90%;
+            padding: 6px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        button {
+            background-color: #007acc;
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background-color: #005fa3;
+        }
+    </style>
+</head>
+<body>
+    <h1>ניהול משימות</h1>
+    {% if tasks %}
+    <form method="POST" action="{% url 'update_tasks' %}">
+        {% csrf_token %}
+        <table>
+            <thead>
+                <tr>
+                    <th>משימה</th>
+                    <th>בוצעה</th>
+                    <th>עריכה</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for task in tasks %}
+                <tr>
+                    <td>
+                        <input type="text" name="title_{{ task.id }}" value="{{ task.title }}" />
+                    </td>
+                    <td>
+                        <input type="checkbox" name="completed_{{ task.id }}" {% if task.completed %}checked{% endif %} />
+                    </td>
+                    <td>
+                        <button type="submit" name="update_id" value="{{ task.id }}">שמור</button>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </form>
+    {% else %}
+        <p>אין משימות להצגה</p>
+    {% endif %}
+</body>
+</html>
