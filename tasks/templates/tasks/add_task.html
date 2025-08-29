@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>הוספת משימה</title>
+</head>
+<body>
+    <h1>הוספת משימה חדשה</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">שמור</button>
+    </form>
+</body>
+</html>
