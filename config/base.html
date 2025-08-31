@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}האתר שלי{% endblock %}</title>
+</head>
+<body>
+    <header>
+        <h1>ניהול משימות</h1>
+        <nav>
+            <a href="{% url 'home' %}">דף הבית</a> |
+            <a href="{% url 'add_task' %}">הוספת משימה</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- כאן יכנס התוכן של כל דף אחר -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>© 2025 האתר שלי</p>
+    </footer>
+</body>
+</html>

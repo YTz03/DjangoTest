@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>הוספת משימה</title>
-</head>
-<body>
-    <h1>הוספת משימה חדשה</h1>
+{% extends "base.html" %}
+
+{% block title %}הוספת משימה{% endblock %}
+
+{% block content %}
+    <h2>הוספת משימה חדשה</h2>
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
         <button type="submit">שמור</button>
     </form>
-</body>
-</html>
+{% endblock %}
